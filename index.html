@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Floriano Bauer - Game Developer</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f7;
+      color: #222;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .left {
+      width: 30%;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      background: #ffffff;
+      padding: 40px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* centralização vertical */
+      align-items: center;
+      text-align: center;
+      border-right: 1px solid #e5e5e5;
+    }
+
+    .left img {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .left h1 { margin-bottom: 10px; }
+
+    .left p {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .contact a {
+      display: block;
+      margin: 6px 0;
+      color: #2b8a6d;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .right {
+      width: 70%;
+      padding: 40px 24px;
+    }
+
+    .content-wrapper {
+      max-width: 600px; /* menor */
+      margin: auto;
+    }
+
+    .projects {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      transition: transform 0.25s ease;
+      width: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+    }
+
+    .carousel {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .carousel img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: none;
+    }
+
+    .carousel img.active {
+      display: block;
+    }
+
+    .carousel button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      border: none;
+      padding: 6px 10px;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    .card-content {
+      padding: 14px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .card a {
+      display: inline-block;
+      margin-top: 4px;
+      color: #2b8a6d;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    @media(max-width: 900px) {
+      body { flex-direction: column; }
+
+      .left {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .right { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="left">
+  <img src="https://via.placeholder.com/300" alt="Sua foto">
+  <h1>Floriano Bauer</h1>
+  <p>
+    Desenvolvedor de jogos apaixonado por sistemas emergentes e gameplay estratégico.
+    Crio experiências que misturam progressão incremental, combate tático e caos controlado.
+  </p>
+
+  <div class="contact">
+    <a href="#">Email</a>
+    <a href="#">GitHub</a>
+    <a href="#">LinkedIn</a>
+  </div>
+</div>
+
+<div class="right">
+  <div class="content-wrapper">
+    <h2 style="margin-bottom:25px;">Projetos</h2>
+
+    <div class="projects">
+
+      <div class="card">
+        <div class="carousel">
+          <img src="assets/webp-1280.jpg" class="active">
+            <img src="assets/webp-1280-2.jpg">
+            <img src="assets/webp-1280-3.jpg">
+            <img src="assets/webp-1280-4.jpg">
+            <button class="prev">◀</button>
+            <button class="next">▶</button>
+        </div>
+        <div class="card-content">
+          <h3>Nome do Jogo</h3>
+          <p>Descrição mais completa do jogo, explicando melhor o diferencial e as mecânicas principais.</p>
+          <a href="#" target="_blank">Jogar</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="carousel">
+          <img src="assets/webp-1280.jpg" class="active">
+            <img src="assets/webp-1280-2.jpg">
+        <img src="assets/webp-1280-3.jpg">
+        <img src="assets/webp-1280-4.jpg">
+          <button class="prev">◀</button>
+          <button class="next">▶</button>
+        </div>
+        <div class="card-content">
+          <h3>Nome do Jogo</h3>
+          <p>Descrição mais completa do jogo, explicando melhor o diferencial e as mecânicas principais.</p>
+          <a href="#" target="_blank">Em breve, na Steam</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.carousel').forEach(carousel => {
+    let index = 0;
+    const images = carousel.querySelectorAll('img');
+
+    const showImage = (i) => {
+      images.forEach(img => img.classList.remove('active'));
+      images[i].classList.add('active');
+    };
+
+    carousel.querySelector('.next').onclick = () => {
+      index = (index + 1) % images.length;
+      showImage(index);
+    };
+
+    carousel.querySelector('.prev').onclick = () => {
+      index = (index - 1 + images.length) % images.length;
+      showImage(index);
+    };
+  });
+</script>
+
+</body>
+</html>
