@@ -162,17 +162,18 @@
 <body>
 
 <div class="left">
-  <img src="https://via.placeholder.com/300" alt="Sua foto">
+  <img src="assets/perfil.jpg">
   <h1>Floriano Bauer</h1>
   <p>
-    Desenvolvedor de jogos apaixonado por sistemas emergentes e gameplay estratégico.
-    Crio experiências que misturam progressão incremental, combate tático e caos controlado.
+    Formado em Sistemas de Informação, sou desenvolvedor backend e game developer. 
+    Tenho experiência na construção de APIs e desenvolvimento de sistemas, 
+    além de projetar e implementar implementação de mecânicas, sistemas e lógica de gameplay para jogos.
   </p>
 
   <div class="contact">
-    <a href="#">Email</a>
-    <a href="#">GitHub</a>
-    <a href="#">LinkedIn</a>
+    <a href="#">Email: fnbauer199@gmail.com</a>
+    <a href="https://github.com/devb4u3r" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/floriano-bauer/" target="_blank">LinkedIn</a>
   </div>
 </div>
 
@@ -192,29 +193,105 @@
             <button class="next">▶</button>
         </div>
         <div class="card-content">
-          <h3>Nome do Jogo</h3>
-          <p>Descrição mais completa do jogo, explicando melhor o diferencial e as mecânicas principais.</p>
-          <a href="#" target="_blank">Jogar</a>
+          <h3>Colete Já</h3>
+          <p>Jogo educativo sobre coleta seletiva.</p>
+          <a href="https://gx.games/games/p9cpih/coleteja/" target="_blank">Jogar</a>
         </div>
       </div>
 
       <div class="card">
         <div class="carousel">
-          <img src="assets/webp-1280.jpg" class="active">
-            <img src="assets/webp-1280-2.jpg">
-        <img src="assets/webp-1280-3.jpg">
-        <img src="assets/webp-1280-4.jpg">
+          <img src="assets/1.png" class="active">
+          <img src="assets/Captura de Tela (34).png">
+          <img src="assets/2.png">
+          <img src="assets/3.png">
+          <img src="assets/Captura de Tela (60).png">
+          <img src="assets/4.png">
+          <img src="assets/5.png">
           <button class="prev">◀</button>
           <button class="next">▶</button>
         </div>
         <div class="card-content">
-          <h3>Nome do Jogo</h3>
-          <p>Descrição mais completa do jogo, explicando melhor o diferencial e as mecânicas principais.</p>
+          <h3>Arcanith</h3>
+          <p>Arcanith é um jogo roguelike no estilo survivors-like onde você controla um mago e enfrenta hordas infinitas de inimigos. Domine seus incríveis poderes, evolua suas magias, sobreviva ao caos e torne o mago implacável.</p>
           <a href="#" target="_blank">Em breve, na Steam</a>
         </div>
       </div>
 
     </div>
+  </div>
+</div>
+
+<script>
+  let currentImages = [];
+  let currentIndex = 0;
+
+  document.querySelectorAll('.carousel').forEach(carousel => {
+    let index = 0;
+    const images = carousel.querySelectorAll('img');
+
+    const showImage = (i) => {
+      images.forEach(img => img.classList.remove('active'));
+      images[i].classList.add('active');
+    };
+
+    carousel.querySelector('.next').onclick = () => {
+      index = (index + 1) % images.length;
+      showImage(index);
+    };
+
+    carousel.querySelector('.prev').onclick = () => {
+      index = (index - 1 + images.length) % images.length;
+      showImage(index);
+    };
+
+    images.forEach((img, i) => {
+      img.style.cursor = 'pointer';
+      img.onclick = () => {
+        currentImages = Array.from(images).map(im => im.src);
+        currentIndex = i;
+        openModal();
+      };
+    });
+  });
+
+  function openModal() {
+    document.getElementById('modal').style.display = 'flex';
+    updateModalImage();
+  }
+
+  function updateModalImage() {
+    document.getElementById('modal-img').src = currentImages[currentIndex];
+  }
+
+  document.getElementById('modal-next').onclick = () => {
+    currentIndex = (currentIndex + 1) % currentImages.length;
+    updateModalImage();
+  };
+
+  document.getElementById('modal-prev').onclick = () => {
+    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+    updateModalImage();
+  };
+
+  document.getElementById('close-modal').onclick = () => {
+    document.getElementById('modal').style.display = 'none';
+  };
+
+  document.getElementById('modal').onclick = (e) => {
+    if (e.target.id === 'modal') {
+      document.getElementById('modal').style.display = 'none';
+    }
+  };
+</script>
+
+
+
+<!-- MODAL -->
+<div id="modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); align-items:center; justify-content:center; z-index:1000;">
+  <div style="position:relative; width:80vw; height:80vh; max-width:900px; max-height:80vh; margin:auto; display:flex; align-items:center; justify-content:center;">
+    <img id="modal-img" style="max-width:100%; max-height:100%; object-fit:contain; border-radius:8px;">
+    <button id="close-modal" style="position:absolute; top:-45px; right:0; background:#fff; border:none; padding:6px 12px; cursor:pointer; border-radius:6px;">X</button>
   </div>
 </div>
 
@@ -237,7 +314,25 @@
       index = (index - 1 + images.length) % images.length;
       showImage(index);
     };
+
+    images.forEach(img => {
+      img.style.cursor = 'pointer';
+      img.onclick = () => {
+        document.getElementById('modal').style.display = 'flex';
+        document.getElementById('modal-img').src = img.src;
+      };
+    });
   });
+
+  document.getElementById('close-modal').onclick = () => {
+    document.getElementById('modal').style.display = 'none';
+  };
+
+  document.getElementById('modal').onclick = (e) => {
+    if (e.target.id === 'modal') {
+      document.getElementById('modal').style.display = 'none';
+    }
+  };
 </script>
 
 </body>
